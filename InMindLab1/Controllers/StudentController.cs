@@ -50,6 +50,7 @@ public class StudentController : Controller
 
     
     [HttpPost("[action]")]
+    [Consumes("multipart/form-data")]
     public void UploadImage([FromForm] IFormFile file)
     {
         _studentService.UploadImage(file);

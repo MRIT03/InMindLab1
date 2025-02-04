@@ -92,6 +92,11 @@ public class StudentService : IStudentService
 
     public void deleteStudent(int id)
     {
+        if (id < 0)
+        {
+            //No Negative Ids
+            return;
+        }
         Student toDelete = students.First(s => s.Id == id);
         students.Remove(toDelete);
     }
