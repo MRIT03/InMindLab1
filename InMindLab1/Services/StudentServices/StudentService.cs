@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using InMindLab1.Common;
 using InMindLab1.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,9 +31,15 @@ public class StudentService : IStudentService
         return students;
     }
 
-    public Student GetStudentById(int id)
+    public Result<Student> GetStudentById(int id)
     {
-        return students.First(s => s.Id == id);
+        
+        Student student = students.FirstOrDefault(s => s.Id == id);
+        if (student == null)
+        {
+            return Result<Student>.Failure($"Student with id {id} Not Found");
+        }
+        return Result<Student>.Success(student);
     }
 
     public List<Student> getStudentByName(string name)

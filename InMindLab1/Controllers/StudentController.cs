@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Mime;
+using InMindLab1.Common;
+using InMindLab1.Filters;
+using InMindLab1.Middleware;
 using InMindLab1.Models;
 using InMindLab1.Services;
 using InMindLab1.Services.StudentServices;
@@ -30,9 +33,15 @@ public class StudentController : Controller
     }
 
     [HttpGet("[action]/{id}")]
-    public Student GetStudentById([FromRoute] int id)
+    public IActionResult GetStudentById([FromRoute] int id)
     {
-        return _studentService.GetStudentById(id);
+        
+        Result<Student>  result= _studentService.GetStudentById(id);
+        if (result.IsSuccess)
+        {
+            return Ok(result.Value);
+        }
+        return NotFound(new {Error = result.Error});
         
     }
 
@@ -86,5 +95,14 @@ public class StudentController : Controller
 
         return Ok(person);
     }
+
+
+    [HttpGet("[action]")]
+    [ServiceFilter(typeof(ILoggerActionFilter))]
+    public IActionResult ILoggerTest([FromBody] Student student)
+    {
+        return Ok(student);
+    }
+    
     
 }

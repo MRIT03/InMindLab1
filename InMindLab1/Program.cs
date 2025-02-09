@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<IStudentService, StudentService>();
 builder.Services.AddSingleton<RequestLoggingMiddleware>();
+builder.Services.AddScoped<ILoggerActionFilter>();
 builder.Services.AddControllers(options =>
 {
 options.Filters.Add<LoggingActionFilter>();

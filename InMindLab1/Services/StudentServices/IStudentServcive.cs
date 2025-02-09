@@ -3,6 +3,7 @@ using InMindLab1.Models;
 using System.Globalization;
 using System.Net.Mime;
 using InMindLab1.Models;
+using InMindLab1.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ public interface IStudentService
     public List<Student> GetAllStudents();
 
     [HttpGet("[action]/{id}")]
-    public Student GetStudentById([FromRoute] int id);
+    public Result<Student> GetStudentById([FromRoute] int id);
 
     [HttpGet("[action]")]
     public List<Student> getStudentByName([FromQuery] string name);
