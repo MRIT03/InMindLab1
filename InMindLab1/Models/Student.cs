@@ -1,6 +1,6 @@
 ﻿namespace InMindLab1.Models;
 
-public class Student
+public class Student : Person
 {
     public long Id { get; set; }
     public string Name {get; set;}

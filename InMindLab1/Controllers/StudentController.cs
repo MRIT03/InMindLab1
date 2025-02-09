@@ -61,7 +61,12 @@ public class StudentController : Controller
     {
         _studentService.deleteStudent(id);
     }
-    
+
+    [HttpGet("[action]")]
+    public void exception()
+    {
+        throw new Exception();
+    }
     
     
 }
