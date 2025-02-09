@@ -1,7 +1,11 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Mime;
 using InMindLab1.Models;
+using InMindLab1.Services;
 using InMindLab1.Services.StudentServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InMindLab1.Controllers;
@@ -9,12 +13,14 @@ namespace InMindLab1.Controllers;
 public class StudentController : Controller
 {
 
-    
+    // These will be resolved with dependency injection
     private readonly IStudentService _studentService;
+    private readonly ObjectMapperService _objectMapperService;
 
-    public StudentController(IStudentService studentService)
+    public StudentController(IStudentService studentService, ObjectMapperService objectMapperService)
     {
         _studentService = studentService;
+        _objectMapperService = objectMapperService;
     }
 
     [HttpGet("[action]")]
@@ -68,5 +74,17 @@ public class StudentController : Controller
         throw new Exception();
     }
     
+    
+    [HttpPost("mapStudentToPerson")]
+    public IActionResult MapStudentToPerson([FromBody] Student student)
+    {
+        if (student == null)
+            return BadRequest("Invalid student data");
+
+        
+        Person person = _objectMapperService.Map<Student, Person>(student);
+
+        return Ok(person);
+    }
     
 }

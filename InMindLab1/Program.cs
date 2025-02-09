@@ -1,5 +1,6 @@
 using InMindLab1.Filters;
 using InMindLab1.Middleware;
+using InMindLab1.Services;
 using InMindLab1.Services.StudentServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -20,6 +21,8 @@ options.Filters.Add<LoggingActionFilter>();
 });
 
 builder.Services.AddScoped<LoggingActionFilter>();
+builder.Services.AddSingleton<ObjectMapperService>();
+
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); 
 builder.Services.AddProblemDetails();
 
