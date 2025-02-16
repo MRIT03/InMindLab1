@@ -26,6 +26,7 @@ builder.Services.AddSingleton<ObjectMapperService>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); 
 builder.Services.AddProblemDetails();
+builder.Services.AddSingleton<ILibraryService, LibraryService>();
 
 var app = builder.Build();
 
