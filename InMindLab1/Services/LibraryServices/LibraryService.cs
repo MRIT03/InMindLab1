@@ -13,15 +13,15 @@ public class LibraryService : ILibraryService
         new Author(5, "Haruki Murakami", new DateTime(1949, 1, 12), "Japan")
     };
 
-    List<Books> books = new List<Books>
+    List<Book> books = new List<Book>
     {
-        new Books(1, "Harry Potter and the Sorcerer's Stone", 1, 9780747532743, new DateTime(1997, 6, 26)),
-        new Books(2, "1984", 2, 9780451524935, new DateTime(1949, 6, 8)),
-        new Books(3, "Pride and Prejudice", 3, 9780679783268, new DateTime(1813, 1, 28)),
-        new Books(4, "Adventures of Huckleberry Finn", 4, 9780486280615, new DateTime(1885, 12, 10)),
-        new Books(5, "Norwegian Wood", 5, 9780375704024, new DateTime(1997, 9, 4)),
-        new Books(6, "Harry Potter and the Chamber of Secrets", 1, 9780747538493, new DateTime(1998, 7, 2)),
-        new Books(7, "Animal Farm", 2, 9780451526342, new DateTime(1945, 8, 17))
+        new Book(1, "Harry Potter and the Sorcerer's Stone", 1, "9780747532743", new DateTime(1997, 6, 26)),
+        new Book(2, "1984", 2, "9780451524935", new DateTime(1949, 6, 8)),
+        new Book(3, "Pride and Prejudice", 3, "9780679783268", new DateTime(1813, 1, 28)),
+        new Book(4, "Adventures of Huckleberry Finn", 4, "9780486280615", new DateTime(1885, 12, 10)),
+        new Book(5, "Norwegian Wood", 5, "9780375704024", new DateTime(1997, 9, 4)),
+        new Book(6, "Harry Potter and the Chamber of Secrets", 1, "9780747538493", new DateTime(1998, 7, 2)),
+        new Book(7, "Animal Farm", 2, "9780451526342", new DateTime(1945, 8, 17))
     };
 
     
@@ -29,21 +29,21 @@ public class LibraryService : ILibraryService
     {
         
     }
-    public List<Books> booksInYear(int year, string order_by)
+    public List<Book> booksInYear(int year, string order_by)
     {
-        var booksInYear = books.Where(b => b.published_year.Year == year);
-        return order_by == "desc" ? booksInYear.OrderByDescending(b => b.published_year).ToList(): booksInYear.ToList();
+        var booksInYear = books.Where(b => b.PublishedYear.Value.Year == year);
+        return order_by == "desc" ? booksInYear.OrderByDescending(b => b.PublishedYear).ToList(): booksInYear.ToList();
     }
 
     public List<Author> authorsInYear(int year)
     {
-        var authorsInYear = authors.Where(a => a.birth_date.Year == year);
+        var authorsInYear = authors.Where(a => a.BirthDate.Value.Year == year);
         return authorsInYear.ToList();
     }
 
     public List<Author> authorsInYearAndCountry(int year, string country)
     {
-        var authorsInYearAndCountry = authors.Where(a => a.birth_date.Year == year && a.country == country);
+        var authorsInYearAndCountry = authors.Where(a => a.BirthDate.Value.Year == year && a.Country == country);
         return authorsInYearAndCountry.ToList();
     }
 
@@ -52,7 +52,7 @@ public class LibraryService : ILibraryService
         return books.Count();
     }
 
-    public List<Books> getBooks(int page, int page_size)
+    public List<Book> getBooks(int page, int page_size)
     {
         // The pages will be treated as indexed by 1
         var booksInPage = books.Skip((page-1) * page_size).Take(page_size);

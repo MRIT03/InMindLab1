@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.OData;
 
 
 
@@ -27,7 +28,8 @@ builder.Services.AddSingleton<ObjectMapperService>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); 
 builder.Services.AddProblemDetails();
 builder.Services.AddSingleton<ILibraryService, LibraryService>();
-
+builder.Services.AddControllers().AddOData(opt =>
+opt.Select().Filter().OrderBy().Count());
 var app = builder.Build();
 
 
