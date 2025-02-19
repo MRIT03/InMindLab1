@@ -6,6 +6,7 @@ using InMindLab1.Models;
 using InMindLab1.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using InMindLab1.Models.University;
 
 
 namespace InMindLab1.Services.StudentServices;

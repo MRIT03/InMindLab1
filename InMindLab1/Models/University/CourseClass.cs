@@ -10,5 +10,5 @@ public class CourseClass
     
     public virtual Course Course { get; set; }
     public virtual Teacher Teacher { get; set; }
-    public virtual ICollection<Student> EnrolledStudents { get; set; }
+    public virtual ICollection<Student>? EnrolledStudents { get; set; }
 }

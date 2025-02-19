@@ -5,7 +5,7 @@ namespace InMindLab1.Models;
 
 public partial class Author
 {
-    public Author(int authorId, string name, DateTime? birthDate, string? country)
+    public Author(int authorId, string name, int? birthDate, string? country)
     {
         AuthorId = authorId;
         Name = name;
@@ -17,7 +17,7 @@ public partial class Author
 
     public string Name { get; set; } = null!;
 
-    public DateTime? BirthDate { get; set; }
+    public int? BirthDate { get; set; }
 
     public string? Country { get; set; }
 

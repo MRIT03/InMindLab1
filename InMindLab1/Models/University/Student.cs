@@ -13,5 +13,5 @@ public class Student : Person
         Email = email;
     }
     
-    public virtual ICollection<CourseClass> EnrolledClasses { get; set; }
+    public virtual ICollection<CourseClass>? EnrolledClasses { get; set; }
 }

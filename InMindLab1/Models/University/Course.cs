@@ -7,5 +7,5 @@ public class Course
     public string Description { get; set; }
     
     // Navigation properties
-    public virtual ICollection<CourseClass> Classes { get; set; }
+    public virtual ICollection<CourseClass>? Classes { get; set; }
 }

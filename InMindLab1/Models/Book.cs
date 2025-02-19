@@ -5,7 +5,7 @@ namespace InMindLab1.Models;
 
 public partial class Book
 {
-    public Book(int bookId, string title, int authorId, string? isbn, DateTime? publishedYear)
+    public Book(int bookId, string title, int authorId, string? isbn, int publishedYear)
     {
         BookId = bookId;
         Title = title;
@@ -22,7 +22,7 @@ public partial class Book
 
     public string? Isbn { get; set; }
 
-    public DateTime? PublishedYear { get; set; }
+    public int PublishedYear { get; set; }
 
     public virtual Author Author { get; set; } = null!;
 

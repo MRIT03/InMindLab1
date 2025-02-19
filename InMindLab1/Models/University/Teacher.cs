@@ -7,5 +7,5 @@ public class Teacher
     public string Email { get; set; }
     
     
-    public virtual ICollection<CourseClass> Classes { get; set; }
+    public virtual ICollection<CourseClass>? Classes { get; set; }
 }

@@ -6,6 +6,7 @@ using InMindLab1.Common;
 using InMindLab1.Filters;
 using InMindLab1.Middleware;
 using InMindLab1.Models;
+using InMindLab1.Models.University;
 using InMindLab1.Services;
 using InMindLab1.Services.StudentServices;
 using Microsoft.AspNetCore.Http;
@@ -66,12 +67,12 @@ public class StudentController : Controller
     }
 
     
-    [HttpPost("[action]")]
-    [Consumes("multipart/form-data")]
-    public void UploadImage([FromForm] IFormFile file)
-    {
-        _studentService.UploadImage(file);
-    }
+    // [HttpPost("[action]")]
+    // [Consumes("multipart/form-data")]
+    // public void UploadImage([FromForm] IFormFile file)
+    // {
+    //     _studentService.UploadImage(file);
+    // }
 
     [HttpDelete("[action]/{id}")]
     public void deleteStudent([FromRoute] int id)
